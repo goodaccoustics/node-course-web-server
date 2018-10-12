@@ -3,6 +3,9 @@ const express = require('express');
 const fs = require('fs');
 const hbs = require('hbs');
 
+const port = process.env.PORT || 3000;
+
+
 //instantiate the app
 var app = express();
 
@@ -39,9 +42,9 @@ app.use((req, res, next)=>{
 //a middleware can also render a page
 //this middleware has no next(), but it will not hang the page, because we use a res.render.
 //everything after this middleware will not be setup.
-app.use((req, res, next)=>{
-	res.render('maintenance.hbs');
-});
+//app.use((req, res, next)=>{
+//	res.render('maintenance.hbs');
+//});
 
 //creating helper functions
 hbs.registerHelper('getCurrentYear', ()=>{
@@ -83,6 +86,6 @@ app.get('/bad', (req, res)=>{
 });
 
 // execute the app by allowing it to listen to incoming
-app.listen(3000, ()=>{
-	console.log('server is up on port 3000');
+app.listen(port, ()=>{
+	console.log(`server is up on port ${port}`);
 });
